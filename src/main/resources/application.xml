@@ -2,12 +2,14 @@
 
 <beans>
 
-    <bean id="helloWorldService" class="com.coco.springframework.main.service.HelloWorldServiceImpl" scope="prototype">
-        <property name="text" value="Hello World"></property>
-    </bean>
+    <component-scan base-package="com.coco.springframework.main.service"></component-scan>
 
-    <bean id="wrapService" class="com.coco.springframework.main.service.WrapService">
-        <property name="helloWorldService" ref="helloWorldService"></property>
-    </bean>
+<!--    <bean id="helloWorldService" class="com.coco.springframework.main.service.HelloWorldServiceImpl" scope="prototype">-->
+<!--        <property name="text" value="Hello World"></property>-->
+<!--    </bean>-->
+
+<!--    <bean id="wrapService" class="com.coco.springframework.main.service.WrapService">-->
+<!--        <property name="helloWorldService" ref="helloWorldService"></property>-->
+<!--    </bean>-->
 
 </beans>
