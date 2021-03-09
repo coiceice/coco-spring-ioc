@@ -1,5 +1,6 @@
 package com.coco.springframework.main;
 
+import com.coco.springframework.annotaion.Autowired;
 import com.coco.springframework.context.ApplicationContext;
 import com.coco.springframework.context.ClassPathXmlApplicationContext;
 import com.coco.springframework.main.service.HelloWorldService;
@@ -11,6 +12,7 @@ import com.coco.springframework.main.service.WrapService;
  * @Description:
  **/
 public class Main {
+
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
         WrapService wrapService = (WrapService) applicationContext.getBean("wrapService");

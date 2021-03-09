@@ -2,7 +2,7 @@ package com.coco.springframework.main.service;
 
 import com.coco.springframework.annotaion.Autowired;
 import com.coco.springframework.annotaion.Component;
-import com.coco.springframework.annotaion.Qualifier;
+import com.coco.springframework.annotaion.Scope;
 
 /**
  * @Author: yanhuanning
@@ -10,9 +10,9 @@ import com.coco.springframework.annotaion.Qualifier;
  * @Description:
  **/
 @Component(name = "wrapService")
+@Scope(value = "prototype")
 public class WrapService {
     @Autowired
-    @Qualifier(value = "helloWorldService")
     private HelloWorldService helloWorldService;
 
     public void say() {

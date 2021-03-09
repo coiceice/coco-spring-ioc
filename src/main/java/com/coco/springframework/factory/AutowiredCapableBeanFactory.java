@@ -33,8 +33,24 @@ public class AutowiredCapableBeanFactory extends AbstractBeanFactory{
             if(value instanceof BeanReference){
                 BeanReference ref = (BeanReference) value;
                 BeanDefinition refDefinition = beanDefinitionMap.get(ref.getName());
-                if(refDefinition.getBean()==null){
-                   value = doCreateBean(refDefinition);
+                if(refDefinition != null) {
+                    if(!refDefinition.isSingleton() || refDefinition.getBean() == null) {
+                        value = doCreateBean(refDefinition);
+                    } else {
+                        value = refDefinition.getBean();
+                    }
+                } else {
+                    // 按照类型匹配，返回第一个匹配的
+                    Class clazz = Class.forName(ref.getName());
+                    for(BeanDefinition definition : beanDefinitionMap.values()) {
+                        if(clazz.isAssignableFrom(definition.getBeanClass())) {
+                            if(!definition.isSingleton() || definition.getBean() == null) {
+                                value = doCreateBean(definition);
+                            } else {
+                                value = definition.getBean();
+                            }
+                        }
+                    }
                 }
             }
             field.setAccessible(true);
